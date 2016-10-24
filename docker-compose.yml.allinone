@@ -1,0 +1,10 @@
+allinone:
+  build: .
+  dockerfile: Dockerfile.allinone
+  ports:
+  - "80:80"
+  environment:
+  - MYSQL_PASSWORD:''
+  volumes:
+  - uploads:/var/www/html/uploads
+  - mysqldata2:/var/lib/mysql

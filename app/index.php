@@ -4,7 +4,11 @@ $host = getenv('DB_HOST') ;
 if ($host == '')
   $host = '127.0.0.1' ;
 
-$mysqli = new mysqli($host, 'root', 'root', 'testing');
+$password = getenv('DB_PASSWORD') ;
+if ($password === false)
+  $password = 'root' ;
+
+$mysqli = new mysqli($host, 'root', $password, 'testing');
 #
 if ($mysqli->connect_errno) {
   echo "COULD NOT CONNECT TO DB\n" ;

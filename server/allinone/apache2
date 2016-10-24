@@ -1,0 +1,3 @@
+#!/bin/sh
+export APACHE_ARGUMENTS=-DNO_DETACH
+exec /usr/sbin/apache2ctl start

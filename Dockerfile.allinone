@@ -1,0 +1,12 @@
+FROM phusion/baseimage:latest
+
+ENV DEBIAN_FRONTEND=noninteractive INITRD=No
+
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold" && apt-get install -y -o Dpkg::Options::="--force-confold" apache2 libapache2-mod-php mysql-server php-mysql && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ADD ./app /var/www/html
+ADD ./server/allinone/apache2 /etc/service/apache2/run
+RUN chmod a+x /etc/service/apache2/run
+
+ADD ./server/allinone/mysql /etc/service/mysql/run
+RUN chmod a+x /etc/service/mysql/run

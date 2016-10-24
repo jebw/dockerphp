@@ -15,4 +15,4 @@ apache:
   environment:
     DB_HOST: mysql
   volumes:
-  - uploads:/usr/share/nginx/html/uploads
+  - uploads:/var/www/html/uploads
