@@ -1,2 +1,10 @@
 #!/bin/sh
-exec su - mysql -s /bin/sh -c "/usr/bin/mysqld_safe > /dev/null 2>&1"
+cd /
+umask 077
+
+MYSQLADMIN='/usr/bin/mysqladmin --defaults-extra-file=/etc/mysql/debian.cnf'
+
+trap "$MYSQLADMIN shutdown" 0
+trap 'exit 2' 1 2 3 15
+
+/usr/bin/mysqld_safe & wait
