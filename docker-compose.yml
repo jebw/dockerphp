@@ -26,6 +26,8 @@ php:
   - mysql
   environment:
     DB_HOST: mysql
+  volumes:
+  - uploads:/code/uploads
 
 nginx:
   build: .
@@ -34,3 +36,5 @@ nginx:
   - "80:80"
   links:
   - php
+  volumes:
+  - uploads:/usr/share/nginx/html/uploads
