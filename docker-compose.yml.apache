@@ -5,22 +5,14 @@ mysql:
   volumes:
   - mysqldata:/var/lib/mysql
 
-php:
+apache:
   build: .
-  dockerfile: Dockerfile.fpm
+  dockerfile: Dockerfile.apache
+  ports:
+  - "80:80"
   links:
   - mysql
   environment:
     DB_HOST: mysql
-  volumes:
-  - uploads:/code/uploads
-
-nginx:
-  build: .
-  dockerfile: Dockerfile.nginx
-  ports:
-  - "80:80"
-  links:
-  - php
   volumes:
   - uploads:/usr/share/nginx/html/uploads
